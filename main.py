@@ -1,6 +1,17 @@
 import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
+from flask import Flask
+import threading
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running fine!"
+
+def run_flask():
+    app.run(host='0.0.0.0', port=10000)
 
 # === CONFIGURATION ===
 BOT_TOKEN = os.getenv("BOT_TOKEN")  # your bot token set in Render
